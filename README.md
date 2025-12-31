@@ -1,6 +1,6 @@
 # School Website – AI Project
 
-## 🔗 Live Demo
+## Live Demo
 https://school-website-ai.netlify.app
 
 A modern, AI-assisted school website built using React, TypeScript, and Vite.  
