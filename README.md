@@ -1,20 +1,24 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# School Website – AI Project
 
-# Run and deploy your AI Studio app
+A modern, AI-assisted school website built using React, TypeScript, and Vite.  
+Focused on clean UI, modular architecture, and real-world frontend practices.
 
-This contains everything you need to run your app locally.
+## Tech Stack
+- React
+- TypeScript
+- Vite
 
-View your app in AI Studio: https://ai.studio/apps/drive/13Aeystk47wddFkocUiih-HbBgh9zAZ1z
+## Key Features
+- Modular component-based structure
+- Admission and job application forms
+- Blog, gallery, and resources pages
+- Parent portal and navigation system
+- Responsive layout
 
-## Run Locally
+## AI Usage
+- Used AI tools to accelerate component scaffolding
+- Iterated on AI-generated code with human-led UX decisions
+- Improved layout, hierarchy, and component structure manually
 
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Purpose
+Built as part of AI-assisted frontend learning and portfolio development.
