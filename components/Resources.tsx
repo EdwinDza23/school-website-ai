@@ -1,30 +1,22 @@
 
 import React, { useState } from 'react';
 import { 
-  Calendar, 
-  Book, 
   Beaker, 
   ArrowRight, 
   Bell, 
   Cpu, 
-  Code, 
-  Globe, 
-  Zap, 
-  Rocket, 
   Plus,
   Minus,
   X,
   User,
   CheckCircle2,
-  Maximize2,
   MousePointer2,
   Monitor,
   Wifi,
   Library,
   GraduationCap,
-  Clock,
   ExternalLink,
-  Activity
+  LucideIcon
 } from 'lucide-react';
 
 const tickerItems = [
@@ -47,7 +39,7 @@ interface Department {
   fullDesc: string;
   img: string;
   stats: DepartmentStat[];
-  icon: any;
+  icon: LucideIcon;
   specs: { category: string; list: string[] }[];
   faculty: {
     name: string;
@@ -114,6 +106,31 @@ const departments: Department[] = [
   },
   {
     id: 3,
+    title: "Innovation Hub",
+    tag: "FUTURISTIC TECH",
+    icon: Cpu,
+    shortDesc: "A space dedicated to robotics, electronics, and 3D prototyping for middle-schoolers.",
+    fullDesc: "The Innovation Hub is SFS Kodani's answer to the Fourth Industrial Revolution. Here, students don't just use technology; they build it. From assembling basic circuits to programming autonomous robots and designing 3D models, this hub is a playground for future engineers and inventors.",
+    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
+    stats: [
+      { label: "BOT KITS", value: "15+ Types" },
+      { label: "3D TECH", value: "PLA Pro" },
+      { label: "CURRICULUM", value: "Maker-Centric" }
+    ],
+    specs: [
+      { category: "Technologies", list: ["Arduino & Raspberry Pi", "LEGO Mindstorms", "3D Printing Stations", "Soldering Stations"] },
+      { category: "Projects", list: ["Line Follower Bots", "Smart Home Automation", "CAD Design Challenges", "Drone Assembly"] },
+      { category: "Access", list: ["Weekly Club Meets", "Exhibition Prep", "Teacher-Guided Sessions"] }
+    ],
+    faculty: {
+      name: "Mr. Shaan Rao",
+      role: "Robotics Lead & Mentor",
+      img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2070&auto=format&fit=crop",
+      bio: "Mr. Shaan is an electronics enthusiast who believes that 'breaking things is the first step to making things'."
+    }
+  },
+  {
+    id: 4,
     title: "Digital Library",
     tag: "KNOWLEDGE HUB",
     icon: Library,
@@ -181,9 +198,14 @@ const Resources: React.FC<ResourcesProps> = ({ onExploreCampus }) => {
               <img src={deepDiveProject.img} className="w-full h-full object-cover" alt={deepDiveProject.title} />
               <div className="absolute inset-0 bg-gradient-to-t from-sfs-green-950 via-sfs-green-950/20 to-transparent"></div>
               <div className="absolute bottom-12 left-12 right-12">
-                <span className="px-5 py-2 bg-sfs-gold text-sfs-green-950 font-bold text-[11px] uppercase tracking-[0.2em] rounded-full mb-6 inline-block">
-                  {deepDiveProject.tag}
-                </span>
+                <div className="flex items-center gap-4 mb-6">
+                   <div className="p-4 bg-sfs-gold text-sfs-green-950 rounded-2xl shadow-xl">
+                      <deepDiveProject.icon size={28} />
+                   </div>
+                   <span className="px-5 py-2 bg-sfs-gold/20 text-sfs-gold font-bold text-[11px] uppercase tracking-[0.2em] rounded-full backdrop-blur-md border border-sfs-gold/30">
+                     {deepDiveProject.tag}
+                   </span>
+                </div>
                 <h2 className="text-5xl md:text-6xl font-display font-bold text-white mb-8 leading-none tracking-tight">
                   {deepDiveProject.title}
                 </h2>
@@ -264,7 +286,7 @@ const Resources: React.FC<ResourcesProps> = ({ onExploreCampus }) => {
                       <button className="p-4 rounded-xl bg-white/5 text-slate-400 hover:text-white transition-colors border border-white/10">
                         <ExternalLink size={20} />
                       </button>
-                      <button className="px-10 py-4 bg-sfs-gold text-sfs-green-950 font-bold rounded-2xl uppercase tracking-widest text-[11px] shadow-2xl shadow-sfs-gold/30 hover:scale-105 transition-transform">
+                      <button className="px-10 py-4 bg-sfs-gold text-sfs-green-950 font-bold rounded-2xl uppercase tracking-widest text-[11px] shadow-2xl shadow-sfs-gold/20 hover:scale-105 transition-transform">
                         Portal Login
                       </button>
                    </div>
@@ -310,10 +332,8 @@ const Resources: React.FC<ResourcesProps> = ({ onExploreCampus }) => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-4 gap-8">
           {departments.map((dept) => {
-            const isComputerLab = dept.id === 1;
-            
             return (
               <div 
                 key={dept.id} 
@@ -321,9 +341,7 @@ const Resources: React.FC<ResourcesProps> = ({ onExploreCampus }) => {
                 className={`glass-card rounded-[40px] overflow-hidden transition-all duration-500 cursor-pointer relative group border border-white/5 ${
                   expandedId === dept.id 
                   ? 'ring-1 ring-sfs-gold/40 shadow-[0_20px_80px_rgba(245,158,11,0.15)] bg-sfs-green-800/40' 
-                  : isComputerLab 
-                    ? 'hover:-translate-y-4 hover:border-blue-400/60 hover:shadow-[0_0_60px_rgba(59,130,246,0.4)] bg-sfs-green-900/40'
-                    : 'hover:border-sfs-gold/30 hover:shadow-[0_0_30px_rgba(30,144,255,0.15)] bg-sfs-green-900/40'
+                  : 'hover:-translate-y-4 hover:border-sfs-gold/60 hover:shadow-[0_0_60px_rgba(245,158,11,0.4)] bg-sfs-green-900/40'
                 }`}
               >
                 {/* Closed View */}
@@ -332,25 +350,21 @@ const Resources: React.FC<ResourcesProps> = ({ onExploreCampus }) => {
                     <div className={`p-5 rounded-3xl transition-all duration-500 shadow-xl ${
                       expandedId === dept.id 
                       ? 'bg-sfs-gold text-sfs-green-950 scale-110' 
-                      : isComputerLab 
-                        ? 'bg-blue-500/10 text-blue-400 border border-blue-400/20 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]'
-                        : 'bg-sfs-green-950/80 text-sfs-gold border border-white/10 group-hover:text-sfs-gold group-hover:border-sfs-gold/50'
+                      : 'bg-sfs-green-950/80 text-sfs-gold border border-white/10 group-hover:text-sfs-gold group-hover:border-sfs-gold/50'
                     }`}>
                       <dept.icon size={32} />
                     </div>
                     <div className={`w-12 h-12 flex items-center justify-center rounded-full border transition-all duration-500 ${
                       expandedId === dept.id 
                       ? 'bg-sfs-gold border-sfs-gold text-sfs-green-950 rotate-180' 
-                      : isComputerLab
-                        ? 'bg-white/5 border-white/10 text-white group-hover:bg-blue-500/10 group-hover:border-blue-400 group-hover:text-blue-400'
-                        : 'bg-white/5 border-white/10 text-white group-hover:bg-sfs-gold/10 group-hover:border-sfs-gold/50 group-hover:text-sfs-gold'
+                      : 'bg-white/5 border-white/10 text-white group-hover:bg-sfs-gold/10 group-hover:border-sfs-gold/50 group-hover:text-sfs-gold'
                     }`}>
                       {expandedId === dept.id ? <Minus size={24} /> : <Plus size={24} />}
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <span className={`text-[11px] font-bold uppercase tracking-[0.2em] mb-1 block transition-colors ${isComputerLab ? 'text-blue-400' : 'text-slate-500 group-hover:text-sfs-gold'}`}>
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-1 block group-hover:text-sfs-gold transition-colors">
                       {dept.tag}
                     </span>
                     <h4 className="text-3xl font-display font-bold text-white group-hover:tracking-tight transition-all">
@@ -372,7 +386,7 @@ const Resources: React.FC<ResourcesProps> = ({ onExploreCampus }) => {
                         {dept.stats.map((stat, i) => (
                           <div key={i} className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5 group/stat hover:bg-white/10 transition-colors">
                              <div className="flex items-center gap-3">
-                                <div className={`w-1 h-4 rounded-full opacity-50 group-hover/stat:opacity-100 transition-opacity ${isComputerLab ? 'bg-blue-400' : 'bg-sfs-gold'}`}></div>
+                                <div className="w-1 h-4 bg-sfs-gold rounded-full opacity-50 group-hover/stat:opacity-100 transition-opacity"></div>
                                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{stat.label}</span>
                              </div>
                              <span className="text-xs font-bold text-white">{stat.value}</span>
@@ -386,7 +400,7 @@ const Resources: React.FC<ResourcesProps> = ({ onExploreCampus }) => {
 
                       <button 
                         onClick={(e) => openDeepDive(dept, e)}
-                        className={`w-full py-5 font-bold rounded-2xl transition-all uppercase tracking-[0.2em] text-[11px] shadow-2xl flex items-center justify-center gap-3 group/btn ${isComputerLab ? 'bg-blue-500 text-white hover:bg-white hover:text-blue-500 shadow-blue-500/20' : 'bg-sfs-gold text-sfs-green-950 hover:bg-white shadow-sfs-gold/20'}`}
+                        className="w-full py-5 bg-sfs-gold hover:bg-white text-sfs-green-950 font-bold rounded-2xl transition-all uppercase tracking-[0.2em] text-[11px] shadow-2xl shadow-sfs-gold/20 flex items-center justify-center gap-3 group/btn"
                       >
                         View Full Department Details <ArrowRight size={18} className="group-hover/btn:translate-x-2 transition-transform" />
                       </button>
@@ -394,8 +408,8 @@ const Resources: React.FC<ResourcesProps> = ({ onExploreCampus }) => {
                   </div>
                 </div>
 
-                {/* Decorative Subtle Blue Glow */}
-                <div className={`absolute -bottom-20 -right-20 w-40 h-40 blur-[80px] rounded-full transition-colors ${isComputerLab ? 'bg-blue-500/10 group-hover:bg-blue-500/30' : 'bg-blue-500/5 group-hover:bg-blue-500/10'}`}></div>
+                {/* Decorative Subtle Gold Glow */}
+                <div className={`absolute -bottom-20 -right-20 w-40 h-40 blur-[80px] rounded-full transition-colors bg-sfs-gold/5 group-hover:bg-sfs-gold/30`}></div>
               </div>
             );
           })}
