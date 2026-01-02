@@ -16,7 +16,7 @@ const About: React.FC = () => {
       case 'us':
         return (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <h3 className="text-2xl font-display font-bold text-white mb-6">Our Legacy & Mission</h3>
+            <h3 className="text-2xl font-display font-bold text-white mb-6">Our Dedication</h3>
             <p className="text-slate-400 leading-relaxed mb-6">
               S.F.S. English Medium School, Kodani, was founded with a singular purpose: to bring world-class education to the heart of Honnavar. Since 1989, we have nurtured generations of students, balancing academic rigor with moral integrity.
             </p>
