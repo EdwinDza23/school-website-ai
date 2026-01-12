@@ -1,7 +1,7 @@
 # School Website – AI Project
 
 ## Live Demo
-https://school-website-ai.netlify.app
+https://sfskodani.netlify.app/
 
 A modern, AI-assisted school website built using React, TypeScript, and Vite.  
 Focused on clean UI, modular architecture, and real-world frontend practices.
